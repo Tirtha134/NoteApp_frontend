@@ -1,0 +1,139 @@
+/* ================= NOTE CARD ================= */
+.note-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+
+  padding: 20px;
+  border-radius: 18px;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.3s ease;
+
+  width: 100%;
+  min-height: 220px;        /* flexible height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  animation: fadeInCard 0.4s ease forwards;
+  opacity: 0;
+}
+
+/* Hover Effect */
+.note-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+  border-color: #2563eb;
+}
+
+/* ================= HEADER ================= */
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Title */
+.note-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Timestamp */
+.note-date {
+  font-size: 11px;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+/* ================= DESCRIPTION ================= */
+.note-description {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+
+  flex: 1;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+/* ================= ACTION BUTTONS ================= */
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Small Icon Buttons */
+.note-actions button {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.25s ease;
+}
+
+/* Edit Button */
+.edit-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+}
+
+.edit-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 18px rgba(34, 197, 94, 0.4);
+}
+
+/* Delete Button */
+.delete-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 18px rgba(239, 68, 68, 0.4);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 500px) {
+  .note-card {
+    min-height: 200px;
+    padding: 16px;
+  }
+
+  .note-title {
+    font-size: 14px;
+  }
+
+  .note-description {
+    font-size: 13px;
+  }
+
+  .note-actions button {
+    width: 30px;
+    height: 30px;
+  }
+}

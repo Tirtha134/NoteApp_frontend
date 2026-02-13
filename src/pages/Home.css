@@ -1,0 +1,181 @@
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ================= HOME ================= */
+.home {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: 120px 40px 40px 40px; /* top padding for navbar spacing */
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ================= WELCOME ================= */
+.welcome {
+  text-align: center;
+  margin-top: 50px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.welcome img {
+  width: 500px;
+  max-width: 100%;
+  margin-bottom: 30px;
+  animation: floatImage 3s ease-in-out infinite;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.welcome img:hover {
+  transform: scale(1.08) rotate(2deg);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
+}
+
+.welcome h2 {
+  font-size: 34px;
+  color: #1e293b;
+  margin-top: 10px;
+}
+
+.welcome p {
+  color: #64748b;
+  margin-top: 12px;
+  font-size: 17px;
+}
+
+/* ================= HEADER ================= */
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  position: sticky;       /* sticky header */
+  top: 90px;              /* below navbar */
+  background: #fff;
+  padding: 10px 0;
+  z-index: 100;
+}
+
+.notes-header h2 {
+  font-size: 26px;
+  color: #1e293b;
+}
+
+.notes-header span {
+  background: #2563eb;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.notes-header span:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* ================= NOTES GRID ================= */
+.notes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* ================= EMPTY ================= */
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  color: #6b7280;
+  font-size: 18px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ================= FLOAT BUTTON ================= */
+.fab {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+
+  font-size: 36px;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.4);
+  transition: all 0.3s ease;
+}
+
+.fab:hover {
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 22px 50px rgba(37, 99, 235, 0.5);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* ================= LOADER ================= */
+.loader {
+  text-align: center;
+  margin-top: 150px;
+  font-size: 22px;
+  color: #1e293b;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatImage {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .home {
+    padding: 100px 20px 20px 20px;
+  }
+
+  .welcome img {
+    width: 320px;
+  }
+
+  .notes-container {
+    grid-template-columns: 1fr;
+  }
+
+  .fab {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .notes-header h2 {
+    font-size: 22px;
+  }
+
+  .notes-header span {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}

@@ -1,0 +1,226 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  position: fixed;             /* always fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  z-index: 10000;              /* higher than other elements */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+
+  background: rgba(15, 23, 42, 0.95); /* slightly dark for contrast */
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+
+  transition: top 0.4s ease, background 0.3s ease;
+}
+
+/* Add top padding to content so it doesn't overlap navbar */
+body, #root, .main-content {
+  padding-top: 75px;  /* same as navbar height */
+}
+
+/* ================= LEFT ================= */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #38bdf8;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  color: #7c3aed;
+  transform: scale(1.05);
+}
+
+/* ================= CENTER SEARCH ================= */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-center input {
+  width: 380px;
+  max-width: 100%;
+  padding: 12px 20px;
+
+  border-radius: 40px;
+  border: 1px solid #e2e8f0;
+  outline: none;
+
+  background: #ffffff;  /* white search box */
+  color: #1e293b;
+  font-size: 14px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.navbar-center input::placeholder {
+  color: #94a3b8;
+}
+
+.navbar-center input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* ================= RIGHT SECTION ================= */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.username {
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+/* ================= USER INFO ================= */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #3b82f6, #7c3aed);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.5);
+  transition: 0.3s ease;
+}
+
+.user-avatar:hover {
+  transform: scale(1.1);
+}
+
+/* ================= BUTTONS ================= */
+.navbar-right a,
+.logout-btn,
+.profile-btn {
+  text-decoration: none;
+  padding: 9px 20px;
+  border-radius: 30px;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+
+  border: none;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+/* Login */
+.navbar-right a[href="/login"] {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.navbar-right a[href="/login"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+}
+
+/* Signup */
+.navbar-right a[href="/signup"],
+.navbar-right a[href="/register"] {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.navbar-right a[href="/signup"]:hover,
+.navbar-right a[href="/register"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(34, 197, 94, 0.4);
+}
+
+/* Profile Button */
+.profile-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.profile-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
+}
+
+/* Logout */
+.logout-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.logout-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4);
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 25px;
+  }
+
+  .navbar-center input {
+    width: 240px;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 480px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .navbar-left,
+  .navbar-center,
+  .navbar-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar-center input {
+    width: 100%;
+  }
+
+  .navbar-right {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
