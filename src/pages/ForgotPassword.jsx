@@ -10,6 +10,7 @@ const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,24 +27,20 @@ const ForgotPassword = () => {
 
     try {
       setLoading(true);
-
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/reset-password",
-        { identifier, newPassword }
+        `${API}/api/auth/reset-password`,
+        { identifier, newPassword },
+        { withCredentials: true }
       );
 
       if (data.success) {
         toast.success(data.message || "Password reset successfully 🔐");
-
         setIdentifier("");
         setNewPassword("");
-
-        setTimeout(() => {
-          navigate("/login");
-        }, 1500);
+        setTimeout(() => navigate("/login"), 1500);
       }
     } catch (error) {
-      if (error.response) {
+      if (error.response?.data?.message) {
         toast.error(error.response.data.message);
       } else if (error.request) {
         toast.error("Server not responding ❌");

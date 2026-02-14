@@ -10,7 +10,7 @@
 /* ================= HOME ================= */
 .home {
   min-height: 100vh;
-  background: #ffffff; /* pure white background */
+  background: #ffffff;
   padding: 120px 40px 40px 40px;
   animation: fadeIn 0.6s ease-in-out;
 }
@@ -58,7 +58,7 @@
   margin-bottom: 25px;
   position: sticky;
   top: 90px;
-  background: #ffffff; /* match new home background */
+  background: #ffffff;
   padding: 10px 0;
   z-index: 100;
   border-bottom: 1px solid #e2e8f0;

@@ -12,42 +12,33 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!name.trim() || !phone.trim() || !email.trim() || !password) {
+    if (!name || !phone || !email || !password) {
       toast.error("All fields are required ❌");
       return;
     }
 
     try {
       setLoading(true);
-
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        { name, phone, email, password }
+        `${API}/api/auth/register`,
+        { name, phone, email, password },
+        { withCredentials: true }
       );
 
       if (data.success) {
         toast.success(data.message || "Account created successfully 🎉");
-
-        // Clear fields
         setName("");
         setPhone("");
         setEmail("");
         setPassword("");
-
-        // Redirect after short delay
-        setTimeout(() => {
-          navigate("/login");
-        }, 1500);
+        setTimeout(() => navigate("/login"), 1500);
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.message ||
-          "User already exists or server error ❌"
-      );
+      toast.error(error.response?.data?.message || "Server error ❌");
     } finally {
       setLoading(false);
     }
@@ -57,7 +48,7 @@ const Signup = () => {
     <div className="signup-container">
       <div className="signup-card">
         <h2 className="title">Create Account</h2>
-        <p className="subtitle">Sign up to get started</p>
+        <p className="subtitle">Sign up to start managing your notes</p>
 
         <form className="signup-form" onSubmit={handleSubmit}>
           <div className="form-group">
@@ -72,10 +63,10 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label>Phone Number</label>
+            <label>Phone</label>
             <input
               type="tel"
-              placeholder="Enter phone number"
+              placeholder="Enter your phone number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
@@ -86,7 +77,7 @@ const Signup = () => {
             <label>Email</label>
             <input
               type="email"
-              placeholder="Enter email"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -97,7 +88,7 @@ const Signup = () => {
             <label>Password</label>
             <input
               type="password"
-              placeholder="Enter password"
+              placeholder="Enter a password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -107,11 +98,11 @@ const Signup = () => {
           <button type="submit" className="signup-btn" disabled={loading}>
             {loading ? "Creating..." : "Sign Up"}
           </button>
-
-          <p className="login-text">
-            Already have an account? <Link to="/login">Login</Link>
-          </p>
         </form>
+
+        <p className="login-text">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
     </div>
   );

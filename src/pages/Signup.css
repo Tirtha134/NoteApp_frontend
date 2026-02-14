@@ -1,4 +1,4 @@
-/* Global Reset */
+/* ================= Global Reset ================= */
 * {
   margin: 0;
   padding: 0;
@@ -6,23 +6,23 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Page Background */
+/* ================= Page Background ================= */
 .signup-container {
   min-height: 100vh;
-  background-color: #ffffff; /* pure white */
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
-/* Card */
+/* ================= Card ================= */
 .signup-card {
-  background-color: #ffffff;
   width: 100%;
   max-width: 360px;
   padding: 30px 28px;
   border-radius: 14px;
+  background-color: #ffffff;
   box-shadow:
     0 8px 20px rgba(0,0,0,0.08),
     0 16px 40px rgba(0,0,0,0.12);
@@ -36,7 +36,7 @@
     0 20px 48px rgba(0,0,0,0.16);
 }
 
-/* Heading */
+/* ================= Heading ================= */
 .title {
   text-align: center;
   font-size: 24px;
@@ -53,7 +53,7 @@
   line-height: 1.5;
 }
 
-/* Form */
+/* ================= Form ================= */
 .signup-form .form-group {
   margin-bottom: 16px;
 }
@@ -85,7 +85,7 @@
   box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
 }
 
-/* Button */
+/* ================= Button ================= */
 .signup-btn {
   width: 100%;
   padding: 12px;
@@ -111,7 +111,7 @@
   transform: translateY(0);
 }
 
-/* Login Text */
+/* ================= Login Text ================= */
 .login-text {
   text-align: center;
   margin-top: 18px;
@@ -129,7 +129,7 @@
   text-decoration: underline;
 }
 
-/* Mobile */
+/* ================= Mobile ================= */
 @media (max-width: 400px) {
   .signup-card {
     max-width: 300px;

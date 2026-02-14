@@ -9,7 +9,7 @@
 /* ================= Page Background ================= */
 .login-container {
   min-height: 100vh;
-  background-color: #ffffff; /* pure white background */
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,11 +18,11 @@
 
 /* ================= Card ================= */
 .login-card {
-  background-color: #ffffff;
   width: 100%;
   max-width: 360px;
   padding: 30px 28px;
   border-radius: 14px;
+  background-color: #ffffff;
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.08),
     0 16px 40px rgba(0, 0, 0, 0.12);
@@ -32,8 +32,8 @@
 .login-card:hover {
   transform: translateY(-3px);
   box-shadow:
-    0 12px 28px rgba(0,0,0,0.12),
-    0 20px 48px rgba(0,0,0,0.16);
+    0 12px 28px rgba(0, 0, 0, 0.12),
+    0 20px 48px rgba(0, 0, 0, 0.16);
 }
 
 /* ================= Heading ================= */
@@ -85,27 +85,6 @@
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
-/* ================= Links ================= */
-.login-links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 8px 0 14px;
-  font-size: 13px;
-}
-
-.back-home,
-.forgot-link {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.back-home:hover,
-.forgot-link:hover {
-  text-decoration: underline;
-}
-
 /* ================= Button ================= */
 .login-btn {
   width: 100%;
@@ -155,9 +134,5 @@
   .login-card {
     max-width: 300px;
     padding: 24px 20px;
-  }
-
-  .login-links {
-    font-size: 12.5px;
   }
 }
