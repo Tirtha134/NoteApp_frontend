@@ -7,124 +7,68 @@ import NoteCard from "../components/NoteCard";
 import Profile from "./Profile"; 
 import { toast } from "react-toastify";
 import "./Home.css";
-import pic from "../assets/pic.png"; // Image inside src/assets/
+import pic from "../assets/pic.png"; 
 
 const Home = () => {
   const { user: authUser, loading } = useAuth();
-
-  // Notes state
   const [notes, setNotes] = useState([]);
   const [currentNote, setCurrentNote] = useState(null);
   const [query, setQuery] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
-
-  // Profile state
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [profileUser, setProfileUser] = useState(null);
 
-  /* ================= FETCH NOTES ================= */
   const fetchNotes = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/note", {
-        withCredentials: true,
-      });
-
+      const { data } = await axios.get("http://localhost:5000/api/note", { withCredentials: true });
       if (data.success) setNotes(data.notes);
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch notes ❌");
     }
   };
 
-  /* ================= ADD NOTE ================= */
   const addNote = async (title, description) => {
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/note/add",
-        { title, description },
-        { withCredentials: true }
-      );
-
-      if (data.success) {
-        toast.success("Note added successfully ✅");
-        setModalOpen(false);
-        fetchNotes();
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Add failed ❌");
-    }
+      const { data } = await axios.post("http://localhost:5000/api/note/add", { title, description }, { withCredentials: true });
+      if (data.success) { toast.success("Note added ✅"); setModalOpen(false); fetchNotes(); }
+    } catch (error) { toast.error(error.response?.data?.message || "Add failed ❌"); }
   };
 
-  /* ================= EDIT NOTE ================= */
   const editNote = async (id, title, description) => {
     try {
-      const { data } = await axios.put(
-        `http://localhost:5000/api/note/${id}`,
-        { title, description },
-        { withCredentials: true }
-      );
-
-      if (data.success) {
-        toast.success("Note updated successfully ✏️");
-        setModalOpen(false);
-        setCurrentNote(null);
-        fetchNotes();
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Update failed ❌");
-    }
+      const { data } = await axios.put(`http://localhost:5000/api/note/${id}`, { title, description }, { withCredentials: true });
+      if (data.success) { toast.success("Note updated ✏️"); setModalOpen(false); setCurrentNote(null); fetchNotes(); }
+    } catch (error) { toast.error(error.response?.data?.message || "Update failed ❌"); }
   };
 
-  /* ================= DELETE NOTE ================= */
   const deleteNote = async (id) => {
     try {
-      const { data } = await axios.delete(
-        `http://localhost:5000/api/note/${id}`,
-        { withCredentials: true }
-      );
-
-      if (data.success) {
-        toast.success("Note deleted 🗑️");
-        fetchNotes();
-      }
-    } catch (error) {
-      toast.error("Delete failed ❌");
-    }
+      const { data } = await axios.delete(`http://localhost:5000/api/note/${id}`, { withCredentials: true });
+      if (data.success) { toast.success("Note deleted 🗑️"); fetchNotes(); }
+    } catch { toast.error("Delete failed ❌"); }
   };
 
-  /* ================= FETCH PROFILE ================= */
   const openProfile = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/api/auth/verify",
-        { withCredentials: true }
-      );
-      if (data.success) {
-        setProfileUser(data.user); // includes password/hash
-        setProfileOpen(true);
-      }
-    } catch (error) {
-      toast.error("Failed to fetch profile ❌");
-    }
+      const { data } = await axios.get("http://localhost:5000/api/auth/verify", { withCredentials: true });
+      if (data.success) { setProfileUser(data.user); setProfileOpen(true); }
+    } catch { toast.error("Failed to fetch profile ❌"); }
   };
 
-  /* ================= INITIAL FETCH ================= */
-  useEffect(() => {
-    if (!loading && authUser) fetchNotes();
-  }, [loading, authUser]);
+  useEffect(() => { if (!loading && authUser) fetchNotes(); }, [loading, authUser]);
 
   if (loading) return <div className="loader">Loading...</div>;
 
   return (
     <div className="home">
-      {/* ================= NAVBAR ================= */}
       <Navbar setQuery={setQuery} openProfile={openProfile} />
 
       {/* ================= WELCOME ================= */}
       {!authUser && (
         <div className="welcome">
-          <img src={pic} alt="welcome" />
-          <h2>Welcome to NoteApp 📝</h2>
-          <p>Please login to start managing your notes.</p>
+          <img src={pic} alt="Welcome" className="welcome-pic" />
+          <h2 className="welcome-title">Welcome to NoteApp 📝</h2>
+          <p className="welcome-subtitle">Please login to start managing your notes.</p>
         </div>
       )}
 
@@ -139,21 +83,12 @@ const Home = () => {
           <div className="notes-container">
             {notes.length > 0 ? (
               notes
-                .filter(
-                  (note) =>
-                    note.title.toLowerCase().includes(query.toLowerCase()) ||
-                    note.description
-                      .toLowerCase()
-                      .includes(query.toLowerCase())
-                )
-                .map((note) => (
+                .filter(note => note.title.toLowerCase().includes(query.toLowerCase()) || note.description.toLowerCase().includes(query.toLowerCase()))
+                .map(note => (
                   <NoteCard
                     key={note._id}
                     note={note}
-                    onEdit={(note) => {
-                      setCurrentNote(note);
-                      setModalOpen(true);
-                    }}
+                    onEdit={(note) => { setCurrentNote(note); setModalOpen(true); }}
                     onDelete={deleteNote}
                   />
                 ))
@@ -165,36 +100,12 @@ const Home = () => {
             )}
           </div>
 
-          {/* ================= FAB BUTTON ================= */}
-          <button
-            className="fab"
-            onClick={() => {
-              setCurrentNote(null);
-              setModalOpen(true);
-            }}
-          >
-            +
-          </button>
+          <button className="fab" onClick={() => { setCurrentNote(null); setModalOpen(true); }}>+</button>
         </>
       )}
 
-      {/* ================= NOTE MODAL ================= */}
-      {isModalOpen && (
-        <NoteModal
-          onClose={() => {
-            setModalOpen(false);
-            setCurrentNote(null);
-          }}
-          addNote={addNote}
-          editNote={editNote}
-          currentNote={currentNote}
-        />
-      )}
-
-      {/* ================= PROFILE CARD ================= */}
-      {isProfileOpen && profileUser && (
-        <Profile user={profileUser} onClose={() => setProfileOpen(false)} />
-      )}
+      {isModalOpen && <NoteModal onClose={() => { setModalOpen(false); setCurrentNote(null); }} addNote={addNote} editNote={editNote} currentNote={currentNote} />}
+      {isProfileOpen && profileUser && <Profile user={profileUser} onClose={() => setProfileOpen(false)} />}
     </div>
   );
 };

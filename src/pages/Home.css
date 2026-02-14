@@ -3,14 +3,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", "Roboto", sans-serif;
+  scroll-behavior: smooth;
 }
 
 /* ================= HOME ================= */
 .home {
   min-height: 100vh;
-  background: #ffffff;
-  padding: 120px 40px 40px 40px; /* top padding for navbar spacing */
+  background: #ffffff; /* pure white background */
+  padding: 120px 40px 40px 40px;
   animation: fadeIn 0.6s ease-in-out;
 }
 
@@ -21,29 +22,32 @@
   animation: fadeIn 0.8s ease-in-out;
 }
 
-.welcome img {
+.welcome-pic {
   width: 500px;
-  max-width: 100%;
-  margin-bottom: 30px;
+  max-width: 90%;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
   animation: floatImage 3s ease-in-out infinite;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.welcome img:hover {
-  transform: scale(1.08) rotate(2deg);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
+.welcome-pic:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
 }
 
-.welcome h2 {
-  font-size: 34px;
+.welcome-title {
+  font-size: 36px;
   color: #1e293b;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.welcome p {
-  color: #64748b;
-  margin-top: 12px;
-  font-size: 17px;
+.welcome-subtitle {
+  font-size: 18px;
+  color: #475569;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 /* ================= HEADER ================= */
@@ -52,22 +56,23 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
-  position: sticky;       /* sticky header */
-  top: 90px;              /* below navbar */
-  background: #fff;
+  position: sticky;
+  top: 90px;
+  background: #ffffff; /* match new home background */
   padding: 10px 0;
   z-index: 100;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .notes-header h2 {
-  font-size: 26px;
+  font-size: 28px;
   color: #1e293b;
 }
 
 .notes-header span {
   background: #2563eb;
   color: white;
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: 20px;
   font-size: 14px;
   transition: 0.3s ease;
@@ -100,22 +105,17 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
-
   width: 70px;
   height: 70px;
   border-radius: 50%;
-
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
-
   font-size: 36px;
   border: none;
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   box-shadow: 0 18px 40px rgba(37, 99, 235, 0.4);
   transition: all 0.3s ease;
 }
@@ -140,42 +140,21 @@
 
 /* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(25px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes floatImage {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-18px); }
-  100% { transform: translateY(0px); }
+  0%,100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.02); }
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .home {
-    padding: 100px 20px 20px 20px;
-  }
-
-  .welcome img {
-    width: 320px;
-  }
-
-  .notes-container {
-    grid-template-columns: 1fr;
-  }
-
-  .fab {
-    width: 60px;
-    height: 60px;
-    font-size: 30px;
-  }
-
-  .notes-header h2 {
-    font-size: 22px;
-  }
-
-  .notes-header span {
-    font-size: 12px;
-    padding: 5px 10px;
-  }
+  .home { padding: 100px 20px 20px 20px; }
+  .welcome-pic { width: 90%; height: auto; }
+  .notes-container { grid-template-columns: 1fr; }
+  .notes-header h2 { font-size: 24px; }
+  .notes-header span { font-size: 12px; padding: 5px 10px; }
+  .fab { width: 60px; height: 60px; font-size: 30px; }
 }

@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
-import Profile from "./pages/Profile"; // ✅ Import Profile page
+import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,11 +15,15 @@ const App = () => {
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/profile" element={<Profile />} /> {/* ✅ Profile route */}
+        <Route path="/profile" element={<Profile />} />
       </Routes>
 
-      {/* Toast Notifications */}
-      <ToastContainer position="top-right" autoClose={3000} />
+      {/* Toast Notifications above everything */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        style={{ zIndex: 9999, marginTop: "70px" }}
+      />
     </>
   );
 };

@@ -8,28 +8,28 @@
 
 /* ================= NAVBAR ================= */
 .navbar {
-  position: fixed;             /* always fixed */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 75px;
-  z-index: 10000;              /* higher than other elements */
+  height: 60px;              /* shorter height */
+  z-index: 10000;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
+  padding: 0 40px;
 
-  background: rgba(15, 23, 42, 0.95); /* slightly dark for contrast */
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 
-  transition: top 0.4s ease, background 0.3s ease;
+  transition: top 0.3s ease, background 0.3s ease;
 }
 
-/* Add top padding to content so it doesn't overlap navbar */
+/* Add top padding to content */
 body, #root, .main-content {
-  padding-top: 75px;  /* same as navbar height */
+  padding-top: 60px;  /* match new navbar height */
 }
 
 /* ================= LEFT ================= */
@@ -39,7 +39,7 @@ body, #root, .main-content {
 }
 
 .logo {
-  font-size: 26px;
+  font-size: 24px;           /* slightly smaller for compactness */
   font-weight: 700;
   text-decoration: none;
   color: #38bdf8;
@@ -60,19 +60,16 @@ body, #root, .main-content {
 }
 
 .navbar-center input {
-  width: 380px;
+  width: 320px;              /* a bit smaller for compact navbar */
   max-width: 100%;
-  padding: 12px 20px;
-
-  border-radius: 40px;
+  padding: 10px 18px;        /* reduced padding */
+  border-radius: 30px;       /* slightly smaller radius */
   border: 1px solid #e2e8f0;
   outline: none;
-
-  background: #ffffff;  /* white search box */
+  background: #ffffff;
   color: #1e293b;
-  font-size: 14px;
-
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-size: 13px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
 
@@ -82,18 +79,18 @@ body, #root, .main-content {
 
 .navbar-center input:focus {
   border-color: #3b82f6;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 /* ================= RIGHT SECTION ================= */
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;                  /* slightly tighter spacing */
 }
 
 .username {
-  font-size: 14px;
+  font-size: 13px;           /* smaller for compact look */
   color: #e2e8f0;
 }
 
@@ -101,26 +98,22 @@ body, #root, .main-content {
 .user-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;               /* smaller avatar */
+  height: 36px;
   border-radius: 50%;
-
   background: linear-gradient(135deg, #3b82f6, #7c3aed);
   color: white;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   text-transform: uppercase;
-
-  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 5px 15px rgba(124, 58, 237, 0.5);
   transition: 0.3s ease;
 }
 
@@ -133,16 +126,13 @@ body, #root, .main-content {
 .logout-btn,
 .profile-btn {
   text-decoration: none;
-  padding: 9px 20px;
-  border-radius: 30px;
-
-  font-size: 14px;
+  padding: 7px 16px;         /* slightly smaller buttons */
+  border-radius: 25px;
+  font-size: 13px;
   font-weight: 500;
   color: white;
-
   border: none;
   cursor: pointer;
-
   transition: all 0.3s ease;
 }
 
@@ -152,8 +142,8 @@ body, #root, .main-content {
 }
 
 .navbar-right a[href="/login"]:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
 
 /* Signup */
@@ -164,8 +154,8 @@ body, #root, .main-content {
 
 .navbar-right a[href="/signup"]:hover,
 .navbar-right a[href="/register"]:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(34, 197, 94, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
 }
 
 /* Profile Button */
@@ -174,8 +164,8 @@ body, #root, .main-content {
 }
 
 .profile-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
 }
 
 /* Logout */
@@ -184,18 +174,18 @@ body, #root, .main-content {
 }
 
 .logout-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
 }
 
 /* ================= TABLET ================= */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 25px;
+    padding: 0 20px;
   }
 
   .navbar-center input {
-    width: 240px;
+    width: 220px;
   }
 }
 
@@ -204,8 +194,8 @@ body, #root, .main-content {
   .navbar {
     height: auto;
     flex-direction: column;
-    padding: 18px;
-    gap: 14px;
+    padding: 14px;
+    gap: 10px;
   }
 
   .navbar-left,
@@ -221,6 +211,6 @@ body, #root, .main-content {
 
   .navbar-right {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
   }
 }
