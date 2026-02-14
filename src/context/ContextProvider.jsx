@@ -13,9 +13,7 @@ const ContextProvider = ({ children }) => {
     try {
       await axios.get(`${API}/api/auth/logout`, { withCredentials: true });
       setUser(null);
-    } catch {
-      setUser(null);
-    }
+    } catch { setUser(null); }
   };
 
   useEffect(() => {
@@ -24,11 +22,8 @@ const ContextProvider = ({ children }) => {
         const { data } = await axios.get(`${API}/api/auth/verify`, { withCredentials: true });
         if (data.success) setUser(data.user);
         else setUser(null);
-      } catch {
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
+      } catch { setUser(null); }
+      finally { setLoading(false); }
     };
     verifyUser();
   }, []);

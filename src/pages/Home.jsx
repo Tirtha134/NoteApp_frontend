@@ -17,25 +17,20 @@ const Home = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [profileUser, setProfileUser] = useState(null);
-
   const API = import.meta.env.VITE_API_URL;
 
   const fetchNotes = async () => {
     try {
       const { data } = await axios.get(`${API}/api/note`, { withCredentials: true });
       if (data.success) setNotes(data.notes);
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to fetch notes ❌");
+    } catch {
+      toast.error("Failed to fetch notes ❌");
     }
   };
 
   const addNote = async (title, description) => {
     try {
-      const { data } = await axios.post(
-        `${API}/api/note/add`,
-        { title, description },
-        { withCredentials: true }
-      );
+      const { data } = await axios.post(`${API}/api/note/add`, { title, description }, { withCredentials: true });
       if (data.success) {
         toast.success("Note added ✅");
         setModalOpen(false);
@@ -48,11 +43,7 @@ const Home = () => {
 
   const editNote = async (id, title, description) => {
     try {
-      const { data } = await axios.put(
-        `${API}/api/note/${id}`,
-        { title, description },
-        { withCredentials: true }
-      );
+      const { data } = await axios.put(`${API}/api/note/${id}`, { title, description }, { withCredentials: true });
       if (data.success) {
         toast.success("Note updated ✏️");
         setModalOpen(false);
@@ -71,8 +62,8 @@ const Home = () => {
         toast.success("Note deleted 🗑️");
         fetchNotes();
       }
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Delete failed ❌");
+    } catch {
+      toast.error("Delete failed ❌");
     }
   };
 
@@ -98,15 +89,13 @@ const Home = () => {
     <div className="home">
       <Navbar setQuery={setQuery} openProfile={openProfile} />
 
-      {!authUser && (
+      {!authUser ? (
         <div className="welcome">
           <img src={pic} alt="Welcome" className="welcome-pic" />
           <h2 className="welcome-title">Welcome to NoteApp 📝</h2>
           <p className="welcome-subtitle">Please login to start managing your notes.</p>
         </div>
-      )}
-
-      {authUser && (
+      ) : (
         <>
           <div className="notes-header">
             <h2>Your Notes</h2>
@@ -115,23 +104,8 @@ const Home = () => {
 
           <div className="notes-container">
             {notes.length > 0 ? (
-              notes
-                .filter(
-                  (note) =>
-                    note.title.toLowerCase().includes(query.toLowerCase()) ||
-                    note.description.toLowerCase().includes(query.toLowerCase())
-                )
-                .map((note) => (
-                  <NoteCard
-                    key={note._id}
-                    note={note}
-                    onEdit={(note) => {
-                      setCurrentNote(note);
-                      setModalOpen(true);
-                    }}
-                    onDelete={deleteNote}
-                  />
-                ))
+              notes.filter(n => n.title.toLowerCase().includes(query.toLowerCase()) || n.description.toLowerCase().includes(query.toLowerCase()))
+                   .map(n => <NoteCard key={n._id} note={n} onEdit={() => { setCurrentNote(n); setModalOpen(true); }} onDelete={deleteNote} />)
             ) : (
               <div className="empty-state">
                 <h3>No Notes Yet 📭</h3>
@@ -140,33 +114,13 @@ const Home = () => {
             )}
           </div>
 
-          <button
-            className="fab"
-            onClick={() => {
-              setCurrentNote(null);
-              setModalOpen(true);
-            }}
-          >
-            +
-          </button>
+          <button className="fab" onClick={() => { setCurrentNote(null); setModalOpen(true); }}>+</button>
         </>
       )}
 
-      {isModalOpen && (
-        <NoteModal
-          onClose={() => {
-            setModalOpen(false);
-            setCurrentNote(null);
-          }}
-          addNote={addNote}
-          editNote={editNote}
-          currentNote={currentNote}
-        />
-      )}
+      {isModalOpen && <NoteModal onClose={() => { setModalOpen(false); setCurrentNote(null); }} addNote={addNote} editNote={editNote} currentNote={currentNote} />}
 
-      {isProfileOpen && profileUser && (
-        <Profile user={profileUser} onClose={() => setProfileOpen(false)} />
-      )}
+      {isProfileOpen && profileUser && <Profile user={profileUser} onClose={() => setProfileOpen(false)} />}
     </div>
   );
 };
