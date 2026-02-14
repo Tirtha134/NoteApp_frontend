@@ -85,20 +85,23 @@
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
-/* ================= Forgot Password Link ================= */
-.forgot-text {
-  text-align: right;
-  font-size: 13px;
+/* ================= Links Row ================= */
+.links-row {
+  display: flex;
+  justify-content: space-between;
   margin: 8px 0 14px;
+  font-size: 13px;
 }
 
-.forgot-text a {
+.back-home,
+.forgot-link {
   color: #2563eb;
   text-decoration: none;
   font-weight: 500;
 }
 
-.forgot-text a:hover {
+.back-home:hover,
+.forgot-link:hover {
   text-decoration: underline;
 }
 
@@ -151,5 +154,9 @@
   .login-card {
     max-width: 300px;
     padding: 24px 20px;
+  }
+
+  .links-row {
+    font-size: 12px;
   }
 }
