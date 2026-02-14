@@ -7,7 +7,6 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
 
   return (
     <div className="note-card">
-      
       <div className="note-header">
         <h2 className="note-title">{note.title}</h2>
         <span className="note-date">{formattedDate}</span>
@@ -20,14 +19,10 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
           <FaEdit />
         </button>
 
-        <button
-          className="delete-btn"
-          onClick={() => onDelete(note._id)}
-        >
+        <button className="delete-btn" onClick={() => onDelete(note._id)}>
           <FaTrash />
         </button>
       </div>
-
     </div>
   );
 };

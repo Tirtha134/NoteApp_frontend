@@ -26,8 +26,8 @@ const Profile = ({ user, onClose }) => {
           </div>
 
           <div className="profile-field">
-            <span className="label">Password:</span>
-            <span className="value">{user.password}</span> {/* hashed password */}
+            <span className="label">Password (hashed):</span>
+            <span className="value">{user.password}</span>
           </div>
         </div>
       </div>

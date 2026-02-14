@@ -24,8 +24,8 @@ const Home = () => {
     try {
       const { data } = await axios.get(`${API}/api/note`, { withCredentials: true });
       if (data.success) setNotes(data.notes);
-    } catch {
-      toast.error("Failed to fetch notes ❌");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to fetch notes ❌");
     }
   };
 
@@ -71,8 +71,8 @@ const Home = () => {
         toast.success("Note deleted 🗑️");
         fetchNotes();
       }
-    } catch {
-      toast.error("Delete failed ❌");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Delete failed ❌");
     }
   };
 

@@ -17,21 +17,14 @@ const NoteModal = ({ onClose, addNote, editNote, currentNote }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (currentNote) {
-      editNote(currentNote._id, title, description);
-    } else {
-      addNote(title, description);
-    }
+    if (currentNote) editNote(currentNote._id, title, description);
+    else addNote(title, description);
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal-card">
-        <h2 className="modal-title">
-          {currentNote ? "Edit Note" : "Add New Note"}
-        </h2>
-
+        <h2 className="modal-title">{currentNote ? "Edit Note" : "Add New Note"}</h2>
         <form onSubmit={handleSubmit} className="modal-form">
           <input
             type="text"
@@ -41,7 +34,6 @@ const NoteModal = ({ onClose, addNote, editNote, currentNote }) => {
             className="modal-input"
             required
           />
-
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -49,15 +41,9 @@ const NoteModal = ({ onClose, addNote, editNote, currentNote }) => {
             className="modal-textarea"
             required
           />
-
           <div className="modal-actions">
-            <button type="button" className="cancel-btn" onClick={onClose}>
-              Cancel
-            </button>
-
-            <button type="submit" className="add-btn">
-              {currentNote ? "Update Note" : "Add Note"}
-            </button>
+            <button type="button" className="cancel-btn" onClick={onClose}>Cancel</button>
+            <button type="submit" className="add-btn">{currentNote ? "Update Note" : "Add Note"}</button>
           </div>
         </form>
       </div>
