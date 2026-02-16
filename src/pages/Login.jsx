@@ -20,7 +20,6 @@ const Login = () => {
         { identifier, password },
         { withCredentials: true }
       );
-
       if (data.success) {
         login(data.user);
         toast.success("Login successful 🎉");
@@ -35,9 +34,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-card">
         <h2 className="title">Login</h2>
-        <p className="subtitle">
-          Access your account to manage your notes
-        </p>
+        <p className="subtitle">Access your account to manage your notes</p>
 
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
@@ -62,13 +59,10 @@ const Login = () => {
             />
           </div>
 
+          {/* Links Row: Back to Home on left, Forgot Password on right */}
           <div className="links-row">
-            <Link className="back-home" to="/">
-              Back to Home?
-            </Link>
-            <Link className="forgot-link" to="/forgot-password">
-              Forgot Password?
-            </Link>
+            <Link className="back-home" to="/">Back to Home?</Link>
+            <Link className="forgot-link" to="/forgot-password">Forgot Password?</Link>
           </div>
 
           <button type="submit" className="login-btn">
