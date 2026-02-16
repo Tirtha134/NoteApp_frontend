@@ -3,16 +3,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* 🚀 Prevent initial scroll */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ================= Page Background ================= */
 .login-container {
-  min-height: 100vh;
-  background-color: #ffffff;
+  height: 100vh; /* Changed from min-height */
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff;
   padding: 20px;
 }
 
