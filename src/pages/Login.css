@@ -3,23 +3,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  overflow: hidden; /* 🚀 Prevent initial scroll */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ================= Page Background ================= */
 .login-container {
-  height: 100vh; /* Changed from min-height */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
   padding: 20px;
+
+  /* 🔥 Prevent page overflow */
+  overflow: hidden;
 }
 
 /* ================= Card ================= */
@@ -29,9 +26,11 @@ body {
   padding: 30px 28px;
   border-radius: 14px;
   background-color: #ffffff;
+
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.08),
     0 16px 40px rgba(0, 0, 0, 0.12);
+
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
